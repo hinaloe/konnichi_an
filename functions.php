@@ -175,10 +175,10 @@ function konnichi_an_comments_arg () {
 
 			'author' => '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label comment-form-author">'.
 			            '<input id="author" name="author" type="text" class="mdl-textfield__input" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . $html_req . ' />'.
-		                '<label class="mdl-textfield__label" for="author">' . __('Name') . '</label></div>',
+		                '<label class="mdl-textfield__label" for="author">' . __('Name') . ($req ? '<span class="required">*</span>' : '') . '</label></div>',
 			'email' => '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label comment-form-email">'.
 			            '<input id="email" name="email" type="email" class="mdl-textfield__input" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . $html_req . ' />'.
-			            '<label class="mdl-textfield__label" for="email">' . __('Email') . '</label></div>',
+			            '<label class="mdl-textfield__label" for="email">' . __('Email') . ($req ? '<span class="required">*</span>' : '' ) . '</label></div>',
 			'url' => '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label comment-form-url">'.
 		             '<input class="mdl-textfield__input" id="url" type="url" value="' . esc_attr($commenter['comment_author_url']) . '" size="30">'.
 		             '<label class="mdl-textfield__label" for="url">' . __( 'Website' ) . '</label></div>',
