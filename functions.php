@@ -160,6 +160,34 @@ function konnichi_an_empty_menu(){
 	echo "<li class='mdl-navigation__link'>". esc_html(__('No Menu', 'konnichi_an')). "</li>";
 }
 
+function konnichi_an_comments_arg () {
+	$req = get_option( 'require_name_email' );
+	$aria_req = ($req ? " aria-required='true'" : '');
+	$html_req = ( $req ? " required='required'" : '' );
+	$commenter = wp_get_current_commenter();
+
+	$comments_arg = array(
+
+		'comment_field' => '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label comment-form-comment"> <textarea class="mdl-textfield__input" id="comment" name="comment" cols="45" rows="10" aria-describedby="form-allowed-tags" aria-required="true" required="required"></textarea><label for="comment" class="mdl-textfield__label">' . _x( 'Comment', 'noun' ) . '</label></div>',
+		'class_submit' => 'submit mdl-button mdl-js-button mdl-button--raised',
+
+		'fields' => apply_filters( 'comment_form_default_fields', array(
+
+			'author' => '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label comment-form-author">'.
+			            '<input id="author" name="author" type="text" class="mdl-textfield__input" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . $html_req . ' />'.
+		                '<label class="mdl-textfield__label" for="author">' . __('Name') . '</label></div>',
+			'email' => '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label comment-form-email">'.
+			            '<input id="email" name="email" type="email" class="mdl-textfield__input" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . $html_req . ' />'.
+			            '<label class="mdl-textfield__label" for="email">' . __('Email') . '</label></div>',
+			'url' => '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label comment-form-url">'.
+		             '<input class="mdl-textfield__input" id="url" type="url" value="' . esc_attr($commenter['comment_author_url']) . '" size="30">'.
+		             '<label class="mdl-textfield__label" for="url">' . __( 'Website' ) . '</label></div>',
+			)
+		),
+	);
+	return apply_filters('konnichi_an_custom_header_args',$comments_arg);
+}
+
 class MdlMenu extends Walker
 {
     public function walk( $elements, $max_depth )

@@ -77,6 +77,6 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'konnichi_an' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(); ?>
+	<?php comment_form( konnichi_an_comments_arg() ); ?>
 
 </div><!-- #comments -->
