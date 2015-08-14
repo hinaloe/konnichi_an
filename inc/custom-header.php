@@ -43,6 +43,8 @@ if ( ! function_exists( 'konnichi_an_header_style' ) ) :
  * @see konnichi_an_custom_header_setup().
  */
 function konnichi_an_header_style() {
+
+	konnichi_an_adminbar_style();
 	$header_text_color = get_header_textcolor();
 
 	// If no custom options for text are set, let's bail
@@ -75,6 +77,20 @@ function konnichi_an_header_style() {
 	</style>
 	<?php
 }
+
+function konnichi_an_adminbar_style() {
+	if (is_admin_bar_showing()) {
+	?>
+		<style>
+			html,body,.mdl-layout__container{height: calc(100% - 32px)!important;}
+			@media screen and ( max-width: 782px ) {
+				html,body,.mdl-layout__container{height: calc(100% - 46px)!important;}
+			}
+		</style>
+	<?php
+	}
+}
+
 endif; // konnichi_an_header_style
 
 if ( ! function_exists( 'konnichi_an_admin_header_style' ) ) :
